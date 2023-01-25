@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 s3 = boto3.client('s3')
 bucket_name = 'flask-itc'
-model_file_name = 'churn_model.pkl'
+model_file_name = 'csr_model.pkl'
 matrix_original_file_name = 'matrix_original.csv'
 user_item_matrix_file_name = 'user_item_matrix.csv'
 
