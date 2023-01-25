@@ -7,7 +7,7 @@ import GamePage from "./Pages/Game/GamePage";
 import PrivateRoute from "./Components/PrivateRoute";
 import MovieRec from "./Components/MovieRec";
 import AppContext from "./AppContext";
-
+import './App.css';
 
 function App() {
   const {handleLogout} = useContext(AppContext);
@@ -15,13 +15,14 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="d-flex justify-content-center mt-3">
-          <Link to="/"><p className="mx-3 fs-6 badge badge-secondary">Home</p></Link>
-          <Link to="/game"><p className="mx-3 fs-6 badge badge-secondary">Rate Movies</p></Link>
-          <Link to="/movieRec"><p className="mx-3 fs-6 badge badge-secondary">Recommendations</p></Link>
-          <Link to="/profile"><p className="mx-3 fs-6 badge badge-secondary">Profile</p></Link>
-          <span className="mx-3 fs-6 badge badge-secondary text-warning" onClick={handleLogout}>Logout</span>
-        </div>
+        <div className="NavBar"><span className="logo mt-2 mx-3">MovieMates</span> <span className="navLinks mx-5 mt-2">
+          <Link to="/"><p className="mx-3 fs-6 mt-5 badge badge-secondary">Home</p></Link>
+          <Link to="/game"><p className="mx-3 fs-6 mt-5 badge badge-secondary">Rate Movies</p></Link>
+          <Link to="/movieRec"><p className="mx-3 fs-6 mt-5 badge badge-secondary">Recommendations</p></Link>
+          <Link to="/profile"><p className="mx-3 fs-6 mt-5 badge badge-secondary">Profile</p></Link>
+          <span className="mx-3 fs-6 mt-5 badge badge-secondary text-warning" onClick={handleLogout}>Logout</span>
+        </span></div>
+       
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
