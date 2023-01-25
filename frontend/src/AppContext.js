@@ -28,7 +28,7 @@ export function AppProvider({children}){
   
 
   return (
-    <AppContext.Provider value={{ currentUser, handleLogout, rateMovie }}>
+    <AppContext.Provider value={{currentUser, handleLogout, rateMovie }}>
       {children}
     </AppContext.Provider>
   );

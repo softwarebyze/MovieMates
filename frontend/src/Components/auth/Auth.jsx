@@ -24,6 +24,8 @@ const Auth = () => {
     await auth.signOut();
     console.log("user logged out");
     localStorage.removeItem("userId");
+    localStorage.removeItem("userNames");
+    localStorage.removeItem("userPhotos");
   };
 
   const signInWithGoogle = async () => {
@@ -35,11 +37,15 @@ const Auth = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+        const userId = user.uid;
+        const userNames = user.displayName;
+        const userPhotos = user.photoURL;
+        localStorage.setItem("userId", JSON.stringify(userId));
+        localStorage.setItem("userName", JSON.stringify(userNames));
+        localStorage.setItem("userPhoto", JSON.stringify(userPhotos));
         console.log(user);
         console.log(user.uid);
-        const userId = user.uid;
-        // ...
-        localStorage.setItem("userId", JSON.stringify(userId));
+        console.log(user.displayName);
       })
       .catch((error) => {
         // Handle Errors here.
