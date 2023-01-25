@@ -11,3 +11,14 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.loggedHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.appDesc{
+    max-width: 400px;
+}
