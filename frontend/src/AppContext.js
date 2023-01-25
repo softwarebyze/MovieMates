@@ -1,14 +1,16 @@
 import { createContext, useState } from "react";
+import { auth } from "./firebase";
 
 const AppContext = createContext();
 
 
 export function AppProvider({children}){
     const [currentUser, setCurrentUser] = useState('false')
-    const handleLogout = (e)=>{
-        //signout from db
-        console.log('test')
-         setCurrentUser(false)
+    const handleLogout = async () => {
+        await auth.signOut();
+        console.log('user logged out');
+        localStorage.removeItem('userId')
+        setCurrentUser(false)
     }
     
     const rateMovie = (userId, movieId, rating) => {
