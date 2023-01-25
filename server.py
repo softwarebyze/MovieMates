@@ -1,8 +1,8 @@
-import pickle
-import pandas as pd
+# import pickle
+# import pandas as pd
 from flask import Flask, request, jsonify
-import json
-import boto3
+# import json
+# import boto3
 
 app = Flask(__name__)
 
