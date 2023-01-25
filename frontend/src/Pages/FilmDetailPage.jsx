@@ -4,6 +4,7 @@ import GenreTag from "../Elements/GenreTag";
 import SmallAvatar from "../Elements/SmallAvatar";
 import Star from "../Elements/Star";
 import "./FilmDetailPage.sass";
+import Header from "../Components/Header";
 
 const data = {
   "posterImg": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1055_.jpg",
@@ -20,6 +21,7 @@ const data = {
 export default function FilmDetailPage() {
   return (
     <>
+      <Header/>
       <main className="main-film-detail">
         <section className="section-film-detail section-film-detail-h">
           <div className="poster-container">
