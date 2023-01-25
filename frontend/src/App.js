@@ -9,6 +9,8 @@ import MovieRec from "./Components/MovieRec";
 import AppContext from "./AppContext";
 import "./App.css";
 import Logo from "./Elements/Logo";
+import FilmDetailPage from "./Pages/FilmDetailPage";
+
 function App() {
   const { handleLogout } = useContext(AppContext);
 
@@ -49,6 +51,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/film/:id" element={<PrivateRoute><FilmDetailPage /></PrivateRoute>} />
         </Routes>
       </div>
     </BrowserRouter>
