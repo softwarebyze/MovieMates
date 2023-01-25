@@ -18,7 +18,7 @@ s3.download_file(bucket_name, model_file_name, '/tmp/model.pkl')
 model = pickle.load(open('/tmp/model.pkl', 'rb'))
 s3.download_file(bucket_name, matrix_original_file_name, '/tmp/matrix_original.csv')
 matrix_original = pd.read_csv('/tmp/matrix_original.csv')
-s3.download_file(bucket_name, matrix_original_file_name, '/tmp/user_item_matrix.csv')
+s3.download_file(bucket_name, user_item_matrix_file_name, '/tmp/user_item_matrix.csv')
 user_item_matrix = pd.read_csv('/tmp/user_item_matrix.csv')
 
 # matrix_original = pd.read_csv('matrix_original.csv')
@@ -40,7 +40,6 @@ def find_movie_mates():
 
     user_mask = user_item_matrix.index
     movie_mask = user_item_matrix.columns
-    print(len(movie_mask))
     new_user_item_matrix = user.loc[:, movie_mask]
 
     user_csr_data = csr_matrix(new_user_item_matrix.values)
