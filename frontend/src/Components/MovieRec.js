@@ -1,8 +1,9 @@
 import React from 'react'
+import {Watched} from "./MovieList/Watched"
 
 function MovieRec() {
   return (
-    <div>MovieRec</div>
+    <Watched />
   )
 }
 
