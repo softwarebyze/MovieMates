@@ -1,10 +1,11 @@
 import React from 'react'
+import './Grades.css'
 
 export default function Grades({handleGrading}) {
   return (
-    <div>
+    <div className='game-grades'>
         <div>
-            <button id='grade-1' onClick={(e) => handleGrading(e)}>☹</button>
+            <button id='grade-1' onClick={(e) => handleGrading(e)}>😟</button>
             <button id='grade-2' onClick={(e) => handleGrading(e)}>🙁</button>
             <button id='grade-3' onClick={(e) => handleGrading(e)}>😐</button>
             <button id='grade-4' onClick={(e) => handleGrading(e)}>🙂</button>

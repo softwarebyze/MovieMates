@@ -31,7 +31,7 @@ export default function GamePage() {
 
   return (
     
-    <div className='d-flex flex-column'>
+    <div className='d-flex flex-column m-5 game-container'>
         <ProgressBar {...propsForProgressBar} />
         <Carousel {...propsForCarousel} />
         <Grades {...propsForGrades} />
