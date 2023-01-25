@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import "./Auth.css";
+import "./Auth.sass";
 // import { useNavigate } from "react-router-dom";
 import Email from "./Email";
+import YellowButton from "../../Elements/YellowButton";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -21,9 +22,9 @@ const Auth = () => {
 
   const handleLogout = async () => {
     await auth.signOut();
-    console.log('user logged out');
-    localStorage.removeItem('userId')
-}
+    console.log("user logged out");
+    localStorage.removeItem("userId");
+  };
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -34,11 +35,11 @@ const Auth = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user)
-        console.log(user.uid)
+        console.log(user);
+        console.log(user.uid);
         const userId = user.uid;
         // ...
-        localStorage.setItem('userId', JSON.stringify(userId))
+        localStorage.setItem("userId", JSON.stringify(userId));
       })
       .catch((error) => {
         // Handle Errors here.
@@ -53,22 +54,30 @@ const Auth = () => {
   };
 
   return (
-    <div>
-      <div className="contain-btn-auth">
-        <h1>Sign Up Now</h1>
-        <button onClick={handleSignEmail}>Sign up with E-mail</button>
-        <button onClick={signInWithGoogle} className="mb-3">
-          Sign up with Google
-        </button>
-        <h5>
+    <main className="main-auth">
+      <div className="auth-container">
+        <h1 className="title-auth">Sign Up Now</h1>
+        <div className="button-container">
+          <YellowButton
+            type="filled"
+            text="Sign up with E-mail"
+            onClickHandler={handleSignEmail}
+          />
+          <YellowButton
+            type="outline"
+            text="Sign up with Google"
+            onClickHandler={signInWithGoogle}
+          />
+        </div>
+        <span className="auth-text">
           Already in the club? Well{" "}
-          <a href="" onClick={test}>
-            sign in
-          </a>
-          now!
-        </h5>
+          <a href="" onClick={test} className="auth-link">
+            sign in 
+          </a> 
+          {" "} now!
+        </span>
       </div>
-    </div>
+    </main>
   );
 };
 
