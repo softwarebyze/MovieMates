@@ -1,7 +1,7 @@
-import React from 'react'
-import Carousel from '../../Components/Game/Carousel'
-import Grades from '../../Components/Game/Grades'
-import ProgressBar from '../../Components/Game/ProgressBar'
+import React, { useState } from 'react'
+import Carousel from '../../components/Game/Carousel'
+import Grades from '../../components/Game/Grades'
+import ProgressBar from '../../components/Game/ProgressBar'
 
 export default function GamePage() {
 
@@ -10,7 +10,7 @@ export default function GamePage() {
     
     const [ratedFilms, setRatedFilms] = useState([]);
 
-    function handleGraging(e) {
+    function handleGrading(e) {
         console.log('e.target.id: ' + e.target.id);
     }
 
@@ -24,7 +24,7 @@ export default function GamePage() {
     }
 
     const propsForGrades = {
-        handleGraging,
+        handleGrading,
     }
 
   return (
