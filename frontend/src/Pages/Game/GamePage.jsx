@@ -20,9 +20,11 @@ export default function GamePage() {
 
     
     useEffect(() => {
+        console.log('11111111111');
         function getMostPopularFilms() {
+            console.log('2222222222222');
             // get 100 most rated films from DB
-            setMostPopularFilms([{movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 3, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 3, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}])
+            setMostPopularFilms([{movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}])
         }
         getMostPopularFilms();
     }, [])
@@ -30,14 +32,24 @@ export default function GamePage() {
     
     useEffect(() => {
         async function setInitialFilms() {
-            const filmOne = await fetchMovieData({imdbId: mostPopularFilms[0]?.imdbId});
-            const filmTwo = await fetchMovieData({imdbId: mostPopularFilms[1]?.imdbId});
+            console.log('44444444444444');
+            const filmOne = await fetchMovieData(mostPopularFilms[0]?.imdbId);
+            const filmTwo = await fetchMovieData(mostPopularFilms[1]?.imdbId);
+            const filmThree = await fetch('https://search.imdbot.workers.dev/?tt=tt' + mostPopularFilms[2]?.imdbId);
+            const fadf = await filmThree.json();
+            console.log('filmThree', fadf);
+            console.log('filmOne', filmOne);
+            console.log('filmOneSTR', JSON.stringify(filmOne));
+            const newFilmOne = JSON.parse(JSON.stringify(filmOne));
+            console.log('newFilmOne', newFilmOne);
             filmOne['movieId'] = mostPopularFilms[0]?.movieId;
             filmTwo['movieId'] = mostPopularFilms[1]?.movieId;
+            console.log('555555555555');
             setCurrentFilm(filmOne);
             setNextFilm(filmTwo);
             setIsLoading(false);
         }
+        console.log('33333333333');
         setInitialFilms();
     }, [mostPopularFilms])
 
@@ -55,12 +67,14 @@ export default function GamePage() {
         getNextFilm();
     }
 
-    useEffect(() => {
-        console.log('ratedFilms', ratedFilms);
-        console.log('currentFilm', currentFilm);
-        console.log('nextFilm', nextFilm);
+    // useEffect(() => {
+    //     console.log('ratedFilms', ratedFilms);
+    //     console.log('currentFilm', currentFilm);
+    //     console.log('nextFilm', nextFilm);
 
-    }, [ratedFilms, currentFilm, nextFilm])
+    // }, [ratedFilms, currentFilm, nextFilm])
+
+
 
     const propsForProgressBar = {
         ratedFilms,

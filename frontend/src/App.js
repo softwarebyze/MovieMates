@@ -7,7 +7,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import MovieRec from "./Components/MovieRec";
 import "./App.css";
 import FilmDetailPage from "./Pages/FilmDetailPage";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);

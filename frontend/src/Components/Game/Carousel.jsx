@@ -4,7 +4,8 @@ import './Carousel.css'
 
 export default function Carousel({ currentFilm }) {
 
-  console.log('currentFilm', currentFilm);
+  console.log('currentFilm33', currentFilm);
+  console.log('currentFilm.genre', currentFilm.genre);
   console.log('currentFilmKeys', Object.keys(currentFilm));
 
   return (
@@ -15,8 +16,8 @@ export default function Carousel({ currentFilm }) {
                 Info
                 {console.log('currentFilm.genre', currentFilm['genre'])}
                 {console.log('currentFilm.genre', currentFilm.genre)}
-                {currentFilm.genre?.forEach(genre => {
-                  return <p>{genre}</p>
+                {currentFilm.genre?.map(genre => {
+                  return <p className='genres-list'>{genre}</p>
                 })}
             </div>
             <div className='big-card carousel-card' style={{ backgroundImage: `url(${currentFilm.picture})` }}>
