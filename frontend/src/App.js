@@ -1,8 +1,7 @@
 import "./App.sass";
 import {BrowserRouter, Link, Routes, Route} from 'react-router-dom'
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import GamePage from "./Pages/Game/GamePage";
+import Home from "./Components/Home";
+import Profile from "./Components/Profile";
 
 function App() {
   return (<BrowserRouter>
@@ -10,8 +9,7 @@ function App() {
       <Link to='/'>Home</Link>
       <Link to='/profile'>Profile</Link>
       <Routes><Route path="/" element={<Home/>} />
-      <Route path="/profile" element={<Profile/>}/>
-      <Route path="/game" element={<GamePage />}/></Routes>
+      <Route path="/profile" element={<Profile/>}/></Routes>
       {/* <div className="NavBar">
         <Link to="/">Home</Link>
         <Link to="/game">Rate Movies</Link>
