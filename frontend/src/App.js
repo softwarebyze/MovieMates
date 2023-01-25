@@ -1,15 +1,10 @@
-import './App.css';
-import Auth from './components/auth/Auth';
 import "./App.sass";
-import { Route, Routes, Link } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
-import GamePage from "./Pages/Game/GamePage";
 
 function App() {
   return (
     <div className="App">
-      <Auth />
-      <div className="NavBar">
+      <p>hi</p>
+      {/* <div className="NavBar">
         <Link to="/">Home</Link>
         <Link to="/game">Rate Movies</Link>
         <Link to="/profile">Profile</Link>
@@ -49,7 +44,7 @@ function App() {
             </PrivateRoute>
           }
         ></Route>
-      </Routes>
+      </Routes> */}
     </div>
   );
 }
