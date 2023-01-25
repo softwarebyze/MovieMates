@@ -1,9 +1,10 @@
 import './App.css';
-import auth from './auth';
+import Auth from './components/auth/Auth';
 
 function App() {
   return (
     <div className="App">
+      <Auth />
     </div>
   );
 }
