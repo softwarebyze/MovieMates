@@ -8,10 +8,7 @@ import fetchMovieData from '../../utils/fetchMovieData'
 export default function GamePage() {
 
 
-    const film = { id: 1, title: 'Pulp Fiction', img: 'https://cdn.europosters.eu/image/750/posters/pulp-fiction-cover-i1288.jpg' }
-    // const nextFilm = { id: 2, title: 'Fight club', img: 'https://img.fruugo.com/product/0/08/14290080_max.jpg' }
-
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [mostPopularFilms, setMostPopularFilms] = useState([]);
     const [currentFilm, setCurrentFilm] = useState({});
@@ -21,38 +18,41 @@ export default function GamePage() {
 
     const [ratedFilms, setRatedFilms] = useState([]);
 
-    function getMostPopularFilms() {
-        // get 100 most rated films from DB
-        setMostPopularFilms([{movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 3, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 3, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}])
-    }
-
+    
     useEffect(() => {
+        function getMostPopularFilms() {
+            // get 100 most rated films from DB
+            setMostPopularFilms([{movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 3, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 3, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}])
+        }
         getMostPopularFilms();
     }, [])
 
-    async function setInitialFilms() {
-        console.log('mostPopularFilms',mostPopularFilms)
-        console.log('mostPopularFilms[2]', mostPopularFilms[2]);
-        console.log('mostPopularFilms[2].imdbId', mostPopularFilms[2].imdbId);
-        const res = await fetchMovieData({imdbId: mostPopularFilms[2].imdbId});
-        console.log('res', res);
-    }
-
+    
     useEffect(() => {
+        async function setInitialFilms() {
+            const filmOne = await fetchMovieData({imdbId: mostPopularFilms[0]?.imdbId});
+            const filmTwo = await fetchMovieData({imdbId: mostPopularFilms[1]?.imdbId});
+            filmOne['movieId'] = mostPopularFilms[0]?.movieId;
+            filmTwo['movieId'] = mostPopularFilms[1]?.movieId;
+            setCurrentFilm(filmOne);
+            setNextFilm(filmTwo);
+            setIsLoading(false);
+        }
         setInitialFilms();
-        // setCurrentFilm(mostPopularFilms[filmCounter]);
-        // setNextFilm(mostPopularFilms[1]);
     }, [mostPopularFilms])
 
-
-    
+    async function getNextFilm() {
+        const nextFilm = await fetchMovieData({imdbId: mostPopularFilms[filmCounter]?.imdbId});
+        console.log("this is the next film",nextFilm);
+        nextFilm['movieId'] = mostPopularFilms[filmCounter]?.movieId;
+        setNextFilm(nextFilm);
+    }
 
     function handleGrading(e) {
         if (e.target.id !== 'skip-film') setRatedFilms([...ratedFilms, { filmId: currentFilm.movieId, grade: e.target.id.split('-')[1] } ]);
-        console.log('e.target.id: ' + e.target.id);
-        setFilmCounter(prev => prev + 1);
         setCurrentFilm(nextFilm);
-        setNextFilm(mostPopularFilms[filmCounter]);
+        setFilmCounter(prev => prev + 1);
+        getNextFilm();
     }
 
     useEffect(() => {
@@ -61,10 +61,6 @@ export default function GamePage() {
         console.log('nextFilm', nextFilm);
 
     }, [ratedFilms, currentFilm, nextFilm])
-
-    function fetchNewFilm() {
-        console.log('fetchNewFilm');
-    }
 
     const propsForProgressBar = {
         ratedFilms,
@@ -80,11 +76,12 @@ export default function GamePage() {
     }
 
   return (
-    
-    <div className='d-flex flex-column m-5 game-container'>
+    <div className='d-flex flex-column m-5 game-container align-items-center'>
+        { !isLoading && ( <>
         <ProgressBar {...propsForProgressBar} />
         <Carousel {...propsForCarousel} />
         <Grades {...propsForGrades} />
+        </>)}
     </div>
   )
 }

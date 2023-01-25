@@ -18,7 +18,7 @@ const data = {
   "movieCast": "Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta, Samuel L. Jackson, Phil LaMarr, Frank Whaley, Burr Steers",
 }
 
-export default function TestPage() {
+export default function FilmDetailPage() {
   return (
     <>
       <Header/>

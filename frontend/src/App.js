@@ -7,38 +7,36 @@ import PrivateRoute from "./Components/PrivateRoute";
 import MovieRec from "./Components/MovieRec";
 import "./App.css";
 import FilmDetailPage from "./Pages/FilmDetailPage";
+import { useEffect } from "react";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, []);
+  console.log(isAuth);
+
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App">  
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/game"
-            element={
-              <PrivateRoute>
-                <GamePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/movieRec"
-            element={
-              <PrivateRoute>
-                <MovieRec />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/film/:id" element={<PrivateRoute><FilmDetailPage /></PrivateRoute>} />
+          {isAuth ? (
+            <>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/game" element={<GamePage />} />
+              <Route path="/movieRec" element={<MovieRec />} />
+              <Route path="/film/:id" element={<FilmDetailPage />} />
+            </>
+          ) : (
+            <Route path="/" element={<Home />} />
+          )}
         </Routes>
       </div>
     </BrowserRouter>

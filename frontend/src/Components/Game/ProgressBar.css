@@ -1,0 +1,7 @@
+#progress-bar > div {
+    display: inline-block;
+    height: 1.6rem;
+    width: 1.6rem;
+    padding: 1vmin;
+    margin: 1vmin;
+}
