@@ -24,7 +24,7 @@ export default function GamePage() {
     }
 
     useEffect(() => {
-        getMostPopularFilms;
+        getMostPopularFilms();
         setCurrentFilm(mostPopularFilms[0]);
         setNextFilm(mostPopularFilms[1])
     }, [])
