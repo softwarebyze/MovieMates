@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.sass";
 import { Route, Routes, Link } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import GamePage from "./Pages/Game/GamePage";
