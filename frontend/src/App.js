@@ -15,12 +15,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="d-flex">
-          <Link to="/"><p className="mx-3 badge badge-secondary">Home</p></Link>
-          <Link to="/game"><p className="mx-3 badge badge-secondary">Rate Movies</p></Link>
-          <Link to="/movieRec"><p className="mx-3 badge badge-secondary">Recommendations</p></Link>
-          <Link to="/profile"><p className="mx-3 badge badge-secondary">Profile</p></Link>
-          <div className="mx-3 badge badge-secondary text-warning" onClick={handleLogout}>Logout</div>
+        <div className="d-flex justify-content-center mt-3">
+          <Link to="/"><p className="mx-3 fs-6 badge badge-secondary">Home</p></Link>
+          <Link to="/game"><p className="mx-3 fs-6 badge badge-secondary">Rate Movies</p></Link>
+          <Link to="/movieRec"><p className="mx-3 fs-6 badge badge-secondary">Recommendations</p></Link>
+          <Link to="/profile"><p className="mx-3 fs-6 badge badge-secondary">Profile</p></Link>
+          <span className="mx-3 fs-6 badge badge-secondary text-warning" onClick={handleLogout}>Logout</span>
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
