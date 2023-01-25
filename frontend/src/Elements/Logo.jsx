@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import "./Logo.sass";
 
-function Logo({type}) {
+function Logo({ type }) {
   return (
-    <div className={`logo logo-${type} mx-4 mt-4`}>
+    <Link to="/" className={`logo logo-${type}`}>
       <span>Movie</span>
       <span>Mates</span>
-    </div>
+    </Link>
   );
 }
 

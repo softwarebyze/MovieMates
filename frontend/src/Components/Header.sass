@@ -1,0 +1,32 @@
+@import ../App.sass
+
+.header
+  display: flex
+  margin: 20px 40px
+  justify-content: space-between
+
+.header-nav
+  margin-top: auto
+  display: flex
+  gap: 30px
+  margin-left: -150px
+
+.header-button
+  margin-top: auto
+  font-size: 18px
+  color: $color-yellow
+  font-family: "Inter", "Helvetica Neue", sans-serif
+  text-decoration: none
+  background: transparent
+  border: none
+  
+  padding-bottom: 1px
+  background-image: linear-gradient($color-yellow, $color-yellow)
+  background-position: 0% 100%
+  background-repeat: no-repeat
+  background-size: 0% 1px
+  transition: background-size .3s ease-out
+
+.header-button:hover
+  background-size: 100% 1px
+  transition: background-size .3s ease-in
