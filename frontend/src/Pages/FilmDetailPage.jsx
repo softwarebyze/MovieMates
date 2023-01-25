@@ -3,20 +3,26 @@ import Footer from "../Components/Footer";
 import GenreTag from "../Elements/GenreTag";
 import SmallAvatar from "../Elements/SmallAvatar";
 import Star from "../Elements/Star";
+import getMovieFromImdbId from "../utils/fetchMovieData";
 import "./FilmDetailPage.sass";
 import Header from "../Components/Header";
 
+getMovieFromImdbId();
+
 const data = {
-  "posterImg": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1055_.jpg",
-  "movieTitle": "Pulp Fiction",
-  "movieYear": "1994",
-  "movieRatingAge": "R",
-  "movieDuration": "2h 34m",
-  "movieDescription": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-  "movieDirector": "Quentin Tarantino",
-  "movieWriters": "Quentin Tarantino, Roger Avary",
-  "movieCast": "Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta, Samuel L. Jackson, Phil LaMarr, Frank Whaley, Burr Steers",
-}
+  posterImg:
+    "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1055_.jpg",
+  movieTitle: "Pulp Fiction",
+  movieYear: "1994",
+  movieRatingAge: "18",
+  movieDuration: "2h 34m",
+  movieDescription:
+    "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+  movieDirector: "Quentin Tarantino",
+  movieWriters: "Quentin Tarantino, Roger Avary",
+  movieCast:
+    "Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta, Samuel L. Jackson, Phil LaMarr, Frank Whaley, Burr Steers",
+};
 
 export default function FilmDetailPage() {
   return (
@@ -25,11 +31,7 @@ export default function FilmDetailPage() {
       <main className="main-film-detail">
         <section className="section-film-detail section-film-detail-h">
           <div className="poster-container">
-            <img
-              src={data.posterImg}
-              alt=""
-              className="poster-img"
-            />
+            <img src={data.posterImg} alt="" className="poster-img" />
           </div>
           <div className="info-container">
             <div className="info-row1">
@@ -38,7 +40,7 @@ export default function FilmDetailPage() {
                 <div className="info-subtitle">
                   <span>{data.movieYear}</span>
                   <span> - </span>
-                  <span>{data.movieRatingAge}</span>
+                  <span>{data.movieRatingAge}+</span>
                   <span> - </span>
                   <span>{data.movieDuration}</span>
                 </div>
@@ -60,9 +62,7 @@ export default function FilmDetailPage() {
                   <GenreTag text="Crime" />
                   <GenreTag text="Drama" />
                 </ul>
-                <p className="info-description">
-                  {data.movieDescription}
-                </p>
+                <p className="info-description">{data.movieDescription}</p>
                 <div className="info-team-item">
                   <span className="info-team-title">Director:</span>
                   <span className="info-team-text">{data.movieDirector}</span>
