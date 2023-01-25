@@ -1,0 +1,29 @@
+.game-grades {
+    margin-top: 10px;
+}
+
+.game-grades button {
+  font-size: 2.5vmin;
+  border: 0.4vmin solid rgb(200, 200, 200);
+  border-radius: 100%;
+  color: white;
+  background-color: transparent;
+  height: 5vmin;
+  width: 5vmin;
+  margin: 0 5px;
+  place-items: center;
+  cursor: pointer;
+  border: 2px solid yellow;
+}
+
+.game-grades button:hover {
+  background-color: yellow;
+}
+
+#skip-film {
+  border: none;
+}
+#skip-film:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
