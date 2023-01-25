@@ -5,11 +5,12 @@ import Email from "./Email";
 import YellowButton from "../../Elements/YellowButton";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userId, setUserId] = useState("");
-  //   const navigate = useNavigate()
+    const navigate = useNavigate()
 
   const handleSignEmail = () => {
     console.log("Sign in with E-mail");
@@ -56,7 +57,9 @@ const Auth = () => {
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
-      });
+      }).finally(() => {
+        navigate("/game")
+        });
   };
 
   return (
