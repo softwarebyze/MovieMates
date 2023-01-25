@@ -1,6 +1,7 @@
 import "./App.css";
 import { Route, Routes, Link } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+import GamePage from "./Pages/Game/GamePage";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           path="/game"
           element={
             <PrivateRoute>
-              <Game />
+              <GamePage />
             </PrivateRoute>
           }
         ></Route>
