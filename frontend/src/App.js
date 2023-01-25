@@ -8,14 +8,14 @@ import PrivateRoute from "./Components/PrivateRoute";
 import MovieRec from "./Components/MovieRec";
 import AppContext from "./AppContext";
 import './App.css';
-
+import Logo from "./Elements/Logo";
 function App() {
   const {handleLogout} = useContext(AppContext);
  
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="NavBar"><span className="logo mt-2 mx-3">MovieMates</span> <span className="navLinks mx-5 mt-2">
+        <div className="NavBar"><Logo type='horizontal'/> <span className="navLinks mx-5 mt-2">
           <Link to="/"><p className="mx-3 fs-6 mt-5 badge badge-secondary">Home</p></Link>
           <Link to="/game"><p className="mx-3 fs-6 mt-5 badge badge-secondary">Rate Movies</p></Link>
           <Link to="/movieRec"><p className="mx-3 fs-6 mt-5 badge badge-secondary">Recommendations</p></Link>
