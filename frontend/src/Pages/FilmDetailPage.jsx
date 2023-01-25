@@ -31,7 +31,11 @@ export default function TestPage() {
               </div>
               <div className="rating-container">
                 <div className="star-container">
-                  <Star/><Star/><Star/><Star/><Star/>
+                  <Star />
+                  <Star />
+                  <Star />
+                  <Star />
+                  <Star />
                 </div>
                 <span className="rating-text">Rating 4.7 / 5</span>
               </div>

@@ -1,19 +1,21 @@
-import React from "react";
-import Grades from "../Game/Grades";
+import { useNavigate } from "react-router-dom";
 
 export const MovieCard = ({ movie, type }) => {
+  const navigate = useNavigate();
   
-  return (
-    <div className="movie-card">
-      <div className="overlay"></div>
-     
-      <img
-        src={`${movie.image}`}
-        alt={`${movie.title} Poster`}
-      />
-      
+  const handleClick = () => {
+    navigate(`/film/${movie.id}`);
+    console.log("after", movie.id);
+  };
 
-     
+  console.log(movie.id);
+  return (
+    <div className="movie-card" onClick={handleClick}>
+      <div className="overlay"></div>
+      <img 
+        src={`${movie.image}`} 
+        alt={`${movie.title} Poster`} 
+       />
     </div>
   );
 };

@@ -51,7 +51,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/film/:id" element={<PrivateRoute><FilmDetailPage /></PrivateRoute>} />
+          <Route path="/film/:id" element={<FilmDetailPage />} />
         </Routes>
       </div>
     </BrowserRouter>
