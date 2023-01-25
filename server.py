@@ -8,22 +8,22 @@ import boto3
 
 app = Flask(__name__)
 
-s3 = boto3.client('s3')
-bucket_name = 'flask-itc'
-model_file_name = 'csr_model.pkl'
-matrix_original_file_name = 'matrix_original.csv'
-user_item_matrix_file_name = 'user_item_matrix.csv'
+# s3 = boto3.client('s3')
+# bucket_name = 'flask-itc'
+# model_file_name = 'csr_model.pkl'
+# matrix_original_file_name = 'matrix_original.csv'
+# user_item_matrix_file_name = 'user_item_matrix.csv'
 
-s3.download_file(bucket_name, model_file_name, '/tmp/model.pkl')
-model = pickle.load(open('/tmp/model.pkl', 'rb'))
-s3.download_file(bucket_name, matrix_original_file_name, '/tmp/matrix_original.csv')
-matrix_original = pd.read_csv('/tmp/matrix_original.csv')
-s3.download_file(bucket_name, matrix_original_file_name, '/tmp/user_item_matrix.csv')
-user_item_matrix = pd.read_csv('/tmp/user_item_matrix.csv')
+# s3.download_file(bucket_name, model_file_name, '/tmp/model.pkl')
+# model = pickle.load(open('/tmp/model.pkl', 'rb'))
+# s3.download_file(bucket_name, matrix_original_file_name, '/tmp/matrix_original.csv')
+# matrix_original = pd.read_csv('/tmp/matrix_original.csv')
+# s3.download_file(bucket_name, matrix_original_file_name, '/tmp/user_item_matrix.csv')
+# user_item_matrix = pd.read_csv('/tmp/user_item_matrix.csv')
 
-# matrix_original = pd.read_csv('matrix_original.csv')
-# user_item_matrix = pd.read_csv('user_item_matrix.csv')
-# model = pickle.load(open('csr_model.pkl', 'rb'))
+matrix_original = pd.read_csv('matrix_original.csv')
+user_item_matrix = pd.read_csv('user_item_matrix.csv')
+model = pickle.load(open('csr_model.pkl', 'rb'))
 user_item_matrix.set_index('userId', inplace=True)
 
 
@@ -39,7 +39,7 @@ def find_movie_mates():
 
     user_mask = user_item_matrix.index
     movie_mask = user_item_matrix.columns
-
+    print(len(movie_mask))
     new_user_item_matrix = user.loc[:, movie_mask]
 
     user_csr_data = csr_matrix(new_user_item_matrix.values)
@@ -52,5 +52,5 @@ def find_movie_mates():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
-    # app.run()
+    # app.run(host='0.0.0.0', port=8080)
+    app.run()
