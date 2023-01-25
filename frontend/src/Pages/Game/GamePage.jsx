@@ -5,9 +5,11 @@ import ProgressBar from '../../components/Game/ProgressBar'
 
 export default function GamePage() {
 
+
     const film = { title: 'Pulp Fiction', img: 'https://cdn.europosters.eu/image/750/posters/pulp-fiction-cover-i1288.jpg' }
     const nextFilm = { title: 'Fight club', img: 'https://img.fruugo.com/product/0/08/14290080_max.jpg' }
     
+    const [isLoading, setIsLoading] = useState(false);
     const [ratedFilms, setRatedFilms] = useState([1, 2, 3]);
 
     function handleGrading(e) {
