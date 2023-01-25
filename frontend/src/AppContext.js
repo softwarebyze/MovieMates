@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
-import { db } from "../firebase";
+import { db } from "./firebase";
 
 const AppContext = createContext();
 
