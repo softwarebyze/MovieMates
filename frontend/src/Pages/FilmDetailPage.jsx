@@ -3,6 +3,8 @@ import Footer from "../Components/Footer";
 import GenreTag from "../Elements/GenreTag";
 import SmallAvatar from "../Elements/SmallAvatar";
 import Star from "../Elements/Star";
+import { useState, useEffect } from "react";
+import fetchMovieData from "../utils/fetchMovieData";
 import "./FilmDetailPage.sass";
 
 const data = {
@@ -17,7 +19,26 @@ const data = {
   "movieCast": "Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta, Samuel L. Jackson, Phil LaMarr, Frank Whaley, Burr Steers",
 }
 
+
+
 export default function TestPage() {
+  const [data, setData] = useState({})
+  useEffect(async () => {
+    const stuff = await fetchMovieData()
+    setData(stuff)},[])
+  const [detailsFilm, setDetailsFilm] = useState({
+    posterImg: "",
+    movieTitle: "",
+    movieYear: "",
+    movieRatingAge: "",
+    movieDuration: "",
+    movieDescription: "",
+    movieDirector: "",
+    movieWriters: "",
+    movieCast: "",
+  });
+    console.log("dataaaaa", data);
+
   return (
     <>
       <main className="main-film-detail">
