@@ -1,4 +1,4 @@
-export default function fetchMovieData({ imdbId = "0113497" }) {
+export default async function fetchMovieData({ imdbId = "0113497" }) {
   const movieData = {};
   const url = "https://search.imdbot.workers.dev/?tt=tt";
   const getMovieFromImdbId = async (imdbId) => {
