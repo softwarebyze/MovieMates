@@ -14,7 +14,7 @@ export default function GamePage() {
     const [currentFilm, setCurrentFilm] = useState({});
     const [nextFilm, setNextFilm] = useState({});
 
-    const [filmCounter, setFilmCounter] = useState(1);
+    const [filmCounter, setFilmCounter] = useState(2);
 
     const [ratedFilms, setRatedFilms] = useState([]);
 
@@ -54,16 +54,16 @@ export default function GamePage() {
     }, [mostPopularFilms])
 
     async function getNextFilm() {
-        const nextFilm = await fetchMovieData({imdbId: mostPopularFilms[filmCounter]?.imdbId});
+        setFilmCounter(prev => prev + 1);
+        const nextFilm = await fetchMovieData(mostPopularFilms[filmCounter]?.imdbId);
         console.log("this is the next film",nextFilm);
         nextFilm['movieId'] = mostPopularFilms[filmCounter]?.movieId;
         setNextFilm(nextFilm);
     }
 
     function handleGrading(e) {
-        if (e.target.id !== 'skip-film') setRatedFilms([...ratedFilms, { filmId: currentFilm.movieId, grade: e.target.id.split('-')[1] } ]);
+        if (e.target.id !== 'skip-film') setRatedFilms([...ratedFilms, { filmId: currentFilm.movieId, grade: e.target.id.split('-')[1], picture: currentFilm.picture } ]);
         setCurrentFilm(nextFilm);
-        setFilmCounter(prev => prev + 1);
         getNextFilm();
     }
 
