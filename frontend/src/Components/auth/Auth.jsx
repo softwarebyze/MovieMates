@@ -67,8 +67,6 @@ const Auth = () => {
           </a>
           now!
         </h5>
-        <button onClick={handleLogout}>Logout</button>
-
       </div>
     </div>
   );

@@ -1,10 +1,20 @@
-import React from 'react'
-import Auth from './auth/Auth'
+import React, { useEffect } from "react";
+import Auth from "./auth/Auth";
+import { useState } from "react";
 
-function Home() {
-  return (
-    <div><Auth /></div>
-  )
-}
+const Home = () => {
+  const [isAuth, setIsAuth] = useState(false);
 
-export default Home
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, []);
+
+  return <div>{isAuth ? <div>You are login</div> : <Auth />}</div>;
+};
+
+export default Home;

@@ -1,5 +1,7 @@
 import { doc, setDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
+
+import { auth } from "./firebase";
 import { db } from "./firebase";
 
 const AppContext = createContext();
@@ -11,7 +13,13 @@ export function AppProvider({ children }) {
     console.log("test");
     setCurrentUser(false);
   };
-
+export function AppProvider({children}){
+    const [currentUser, setCurrentUser] = useState('false')
+    const handleLogout = async () => {
+        await auth.signOut();
+        console.log('user logged out');
+        localStorage.removeItem('userId')
+        setCurrentUser(false)
   const rateMovie = async (userId, movieId, rating) => {
     const ratingObject = {};
     ratingObject[movieId] = rating;
