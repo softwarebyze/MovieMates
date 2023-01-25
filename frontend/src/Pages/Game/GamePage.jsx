@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Carousel from '../../components/Game/Carousel'
-import Grades from '../../components/Game/Grades'
-import ProgressBar from '../../components/Game/ProgressBar'
+import Carousel from '../../Components/Game/Carousel'
+import Grades from '../../Components/Game/Grades'
+import ProgressBar from '../../Components/Game/ProgressBar'
 
 export default function GamePage() {
 
