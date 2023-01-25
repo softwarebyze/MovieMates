@@ -1,7 +1,18 @@
 import React from 'react'
 
-export default function Carousel() {
+import './Carousel.css'
+
+export default function Carousel({ film }) {
   return (
-    <div>Carousel</div>
+    <div id='carousel'>
+        <div className='card-group'>
+        <div className='big-card'>
+            Poster
+        </div>
+        <div className='big-card'>
+            Info
+        </div>
+        </div>
+    </div>
   )
 }
