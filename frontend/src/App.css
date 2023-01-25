@@ -1,0 +1,8 @@
+.NavBar{
+    display: flex;
+}
+
+.navLinks{
+    display: flex;
+    justify-content: center;
+}
