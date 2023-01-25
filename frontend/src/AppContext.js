@@ -13,6 +13,8 @@ export function AppProvider({children}){
         await auth.signOut();
         console.log('user logged out');
         localStorage.removeItem('userId')
+        localStorage.removeItem('userPhoto')
+        localStorage.removeItem('userName')
         setCurrentUser(false)}
   const rateMovie = async (userId, movieId, rating) => {
     const ratingObject = {};
