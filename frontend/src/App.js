@@ -1,9 +1,15 @@
 import "./App.sass";
+import {BrowserRouter, Link, Routes, Route} from 'react-router-dom'
+import Home from "./Components/Home";
+import Profile from "./Components/Profile";
 
 function App() {
-  return (
+  return (<BrowserRouter>
     <div className="App">
-      <p>hi</p>
+      <Link to='/'>Home</Link>
+      <Link to='/profile'>Profile</Link>
+      <Routes><Route path="/" element={<Home/>} />
+      <Route path="/profile" element={<Profile/>}/></Routes>
       {/* <div className="NavBar">
         <Link to="/">Home</Link>
         <Link to="/game">Rate Movies</Link>
@@ -45,7 +51,7 @@ function App() {
           }
         ></Route>
       </Routes> */}
-    </div>
+    </div></BrowserRouter>
   );
 }
 
