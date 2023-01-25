@@ -1,0 +1,5 @@
+.big-card {
+    width: 30vmin;
+    aspect-ratio: 5 / 7;
+    border: 1px solid red;
+}
