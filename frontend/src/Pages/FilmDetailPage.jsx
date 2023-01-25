@@ -5,6 +5,18 @@ import SmallAvatar from "../Elements/SmallAvatar";
 import Star from "../Elements/Star";
 import "./FilmDetailPage.sass";
 
+const data = {
+  "posterImg": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1055_.jpg",
+  "movieTitle": "Pulp Fiction",
+  "movieYear": "1994",
+  "movieRatingAge": "R",
+  "movieDuration": "2h 34m",
+  "movieDescription": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+  "movieDirector": "Quentin Tarantino",
+  "movieWriters": "Quentin Tarantino, Roger Avary",
+  "movieCast": "Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta, Samuel L. Jackson, Phil LaMarr, Frank Whaley, Burr Steers",
+}
+
 export default function TestPage() {
   return (
     <>
@@ -12,7 +24,7 @@ export default function TestPage() {
         <section className="section-film-detail section-film-detail-h">
           <div className="poster-container">
             <img
-              src="https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1055_.jpg"
+              src={data.posterImg}
               alt=""
               className="poster-img"
             />
@@ -20,13 +32,13 @@ export default function TestPage() {
           <div className="info-container">
             <div className="info-row1">
               <div>
-                <h1 className="title-h1">Pulp Fiction</h1>
+                <h1 className="title-h1">{data.movieTitle}</h1>
                 <div className="info-subtitle">
-                  <span>1994</span>
+                  <span>{data.movieYear}</span>
                   <span> - </span>
-                  <span>R</span>
+                  <span>{data.movieRatingAge}</span>
                   <span> - </span>
-                  <span>2h 34m</span>
+                  <span>{data.movieDuration}</span>
                 </div>
               </div>
               <div className="rating-container">
@@ -43,25 +55,19 @@ export default function TestPage() {
                   <GenreTag text="Drama" />
                 </ul>
                 <p className="info-description">
-                  The lives of two mob hitmen, a boxer, a gangster and his wife,
-                  and a pair of diner bandits intertwine in four tales of
-                  violence and redemption.
+                  {data.movieDescription}
                 </p>
                 <div className="info-team-item">
                   <span className="info-team-title">Director:</span>
-                  <span className="info-team-text">Quentin Tarantino</span>
+                  <span className="info-team-text">{data.movieDirector}</span>
                 </div>
                 <div className="info-team-item">
                   <span className="info-team-title">Writers:</span>
-                  <span>Quentin Tarantino, Roger Avary</span>
+                  <span>{data.movieWriters}</span>
                 </div>
                 <div className="info-team-item">
                   <span className="info-team-title">Cast:</span>
-                  <span>
-                    Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta,
-                    Samuel L. Jackson, Phil LaMarr, Frank Whaley, Burr Steers
-                    ...
-                  </span>
+                  <span>{data.movieCast}</span>
                 </div>
               </div>
               <div className="mates-container">
