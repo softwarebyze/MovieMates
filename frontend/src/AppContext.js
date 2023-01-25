@@ -6,20 +6,14 @@ import { db } from "./firebase";
 
 const AppContext = createContext();
 
-export function AppProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState("false");
-  const handleLogout = (e) => {
-    //signout from db
-    console.log("test");
-    setCurrentUser(false);
-  };
+
 export function AppProvider({children}){
     const [currentUser, setCurrentUser] = useState('false')
     const handleLogout = async () => {
         await auth.signOut();
         console.log('user logged out');
         localStorage.removeItem('userId')
-        setCurrentUser(false)
+        setCurrentUser(false)}
   const rateMovie = async (userId, movieId, rating) => {
     const ratingObject = {};
     ratingObject[movieId] = rating;
@@ -31,6 +25,7 @@ export function AppProvider({children}){
       console.error("Error adding document: ", e);
     }
   };
+  
 
   return (
     <AppContext.Provider value={{ currentUser, handleLogout, rateMovie }}>
