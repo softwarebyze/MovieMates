@@ -27,6 +27,31 @@ function App() {
       <div className="App">  
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/game"
+            element={
+              <PrivateRoute>
+                <GamePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/movieRec"
+            element={
+              <PrivateRoute>
+                <MovieRec />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/film/:id" element={<FilmDetailPage />} />
           {isAuth ? (
             <>
               <Route path="/profile" element={<Profile />} />
