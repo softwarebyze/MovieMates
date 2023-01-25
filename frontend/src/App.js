@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./App.sass";
-import AppContext from "./AppContext";
 import Home from "./Components/Home";
 import MovieRec from "./Components/MovieRec";
 import NavBar from "./Components/NavBar";
+import PrivateRoute from "./Components/PrivateRoute.js";
 import Profile from "./Components/Profile";
 import FilmDetailPage from "./Pages/FilmDetailPage";
 import GamePage from "./Pages/Game/GamePage";
@@ -28,7 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar isAuth={isAuth} handleLogout={handleLogout} />
+        <NavBar isAuth={isAuth} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

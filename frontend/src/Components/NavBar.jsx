@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import AppContext from "../AppContext";
 import Logo from "../Elements/Logo";
 
-export default function NavBar({ isAuth, handleLogout }) {
+export default function NavBar({ isAuth }) {
+  const { handleLogout } = useContext(AppContext);
+
   return (
     <div className="NavBar">
       <Logo type="horisontal" />{" "}
