@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./App.sass";
+import AppContext from "./AppContext";
 import Home from "./Components/Home";
 import MovieRec from "./Components/MovieRec";
 import NavBar from "./Components/NavBar";
@@ -9,11 +10,10 @@ import PrivateRoute from "./Components/PrivateRoute.js";
 import Profile from "./Components/Profile";
 import FilmDetailPage from "./Pages/FilmDetailPage";
 import GamePage from "./Pages/Game/GamePage";
-import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const {handleLogout} = useContext(AppContext)
+  const { handleLogout } = useContext(AppContext);
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
