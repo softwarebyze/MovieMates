@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
@@ -11,11 +11,14 @@ import "./FilmDetailPage.sass";
 export default function FilmDetailPage() {
   const [data, setData] = useState({});
   const { id } = useParams();
-  getMovieFromImdbId(id)
-    .then((movieData) => {
-      setData(movieData);
-    })
-    .catch((e) => console.log("problem with fetchMovieData", e));
+  useEffect(() => {
+    getMovieFromImdbId(id)
+      .then((movieData) => {
+        setData(movieData);
+      })
+      .catch((e) => console.log("problem with fetchMovieData", e));
+  }, [id]);
+  
   return (
     <>
       <Header />
