@@ -9,9 +9,11 @@ import NavBar from "./Components/NavBar";
 import Profile from "./Components/Profile";
 import FilmDetailPage from "./Pages/FilmDetailPage";
 import GamePage from "./Pages/Game/GamePage";
+import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  const {handleLogout} = useContext(AppContext)
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
