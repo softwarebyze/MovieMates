@@ -3,7 +3,7 @@ import './Grades.css'
 
 export default function Grades({handleGrading}) {
   return (
-    <div className='game-grades'>
+    <div className='game-grades text-center'>
         <div>
             <button id='grade-1' onClick={(e) => handleGrading(e)}>😟</button>
             <button id='grade-2' onClick={(e) => handleGrading(e)}>🙁</button>

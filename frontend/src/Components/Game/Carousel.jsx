@@ -9,15 +9,15 @@ export default function Carousel({ currentFilm }) {
   console.log('currentFilmKeys', Object.keys(currentFilm));
 
   return (
-    <div id='carousel' className='m-3'>
-        <div className='text-center'>{currentFilm.title}</div>
+    <div id='carousel' className='m-3 d-flex flex-column align-items-center'>
+        <div className='text-center'><h2 className='mb-4'>{currentFilm.title}</h2></div>
         <div className='card-group'>
             <div className='big-card carousel-card'>
-                Info
+                <h3>Genre</h3>
                 {console.log('currentFilm.genre', currentFilm['genre'])}
                 {console.log('currentFilm.genre', currentFilm.genre)}
                 {currentFilm.genre?.map(genre => {
-                  return <p className='genres-list'>{genre}</p>
+                  return <p key={genre} className='genres-list'>{genre}</p>
                 })}
             </div>
             <div className='big-card carousel-card' style={{ backgroundImage: `url(${currentFilm.picture})` }}>
