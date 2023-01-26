@@ -2,6 +2,7 @@ import { doc, getDocs, setDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
 
 import { auth, db } from "./firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 const AppContext = createContext();
 
@@ -27,7 +28,7 @@ export function AppProvider({ children }) {
 
     try {
       // update firestore with new rating
-      await setDoc(doc(db, "movielensFull", userId), ratingObject, {
+      await addDoc(collection(db, "movielensFull"), ratingObject, {
         merge: true,
       });
       // await updateDoc(doc(db, "movielensFull", userId), ratingObject);
