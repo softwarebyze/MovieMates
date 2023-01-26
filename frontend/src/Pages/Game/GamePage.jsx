@@ -55,20 +55,17 @@ export default function GamePage() {
     function handleGrading(e) {
         if (e.target.id === 'continue') return handleContinue();
         if (e.target.id !== 'skip-film') setRatedFilms([...ratedFilms, { movieId: currentFilm.movieId, grade: (+e.target.id.split('-')[1])*2, picture: currentFilm.posterImg } ]);
-        rateMovie(JSON.parse(localStorage.getItem("userId")), currentFilm.movieId, (+e.target.id.split('-')[1])*2);
+        rateMovie(1, currentFilm.movieId, (+e.target.id.split('-')[1])*2);
         setCurrentFilm(nextFilm);
         getNextFilm();
     }
 
     function handleContinue() {
         const ratedFilmsWithoutPictures = ratedFilms.map(item => {
-            return {[item.movieId.toString()]: item.grade}
+            return {[+item.movieId]: +item.grade}
         });
-        console.log('ratedFilmsWithoutPictures', ratedFilmsWithoutPictures);
-        console.log(JSON.stringify(ratedFilmsWithoutPictures));
-        console.log(JSON.stringify(ratedFilmsWithoutPictures[0]));
-        // setRatedFilmsForDS(ratedFilmsWithoutPictures);
-        submitRatings(ratedFilmsWithoutPictures);
+        let objectForDS = ratedFilmsWithoutPictures.reduce((acc, item) => ({...acc, ...item}), {})
+        submitRatings(objectForDS);
     }
     // useEffect(() => {
     //     console.log('ratedFilms', ratedFilms);
@@ -103,3 +100,4 @@ export default function GamePage() {
     </div>
   )
 }
+
