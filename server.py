@@ -7,7 +7,7 @@ from flask_cors import CORS
 import boto3
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/mates/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 s3 = boto3.client('s3')
 bucket_name = 'flask-itc'
