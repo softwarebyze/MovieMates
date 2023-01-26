@@ -8,6 +8,8 @@ import Header from "./Components/Header";
 import PrivateRoute from "./Components/PrivateRoute.js";
 import Profile from "./Components/Profile";
 import FilmDetailPage from "./Pages/FilmDetailPage";
+import GamePage from "./Pages/Game/GamePage"
+import UserMatch from "./Components/UserMatch/UserMatch"
 import Mates from "./Pages/Mates";
 import GamePage from "./Pages/Game/GamePage";
 
@@ -55,6 +57,7 @@ function App() {
             }
           />
           <Route path="/film/:id" element={<FilmDetailPage />} />
+          <Route path="/compare/:id" element={<UserMatch />} />
           {isAuth ? (
             <>
               <Route path="/profile" element={<Profile />} />
