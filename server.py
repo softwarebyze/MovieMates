@@ -3,10 +3,11 @@ import pandas as pd
 import numpy as np
 from flask import Flask, request, jsonify
 from scipy.sparse import csr_matrix
-import json
+from flask_cors import CORS
 import boto3
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 s3 = boto3.client('s3')
 bucket_name = 'flask-itc'
