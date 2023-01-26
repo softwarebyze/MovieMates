@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
+<<<<<<< Updated upstream
 import Header from "../Components/Header";
 import '../App.css'
+=======
+>>>>>>> Stashed changes
 
 function Profile() {
   const myUser = JSON.parse(localStorage.getItem("userName"))
@@ -15,8 +18,12 @@ function Profile() {
       };
   return (
     <>
+<<<<<<< Updated upstream
       <Header/>
       <div className='d-flex justify-content-center'><form onSubmit={handleSubmit}>
+=======
+      <div><form onSubmit={handleSubmit}>
+>>>>>>> Stashed changes
       <textarea
             className="changeName form-control"
             value={userName}
