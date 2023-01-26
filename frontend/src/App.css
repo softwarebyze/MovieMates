@@ -2,16 +2,6 @@
     display: flex;
 }
 
-.navLinks{
-    display: flex;
-    justify-content: center;
-}
-
-.hoverLine:hover{
-    text-decoration: underline;
-    cursor: pointer;
-}
-
 .loggedHome{
     display: flex;
     justify-content: center;
