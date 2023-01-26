@@ -6,10 +6,12 @@ import Carousel from '../../Components/Game/Carousel'
 import Grades from '../../Components/Game/Grades'
 import ProgressBar from '../../Components/Game/ProgressBar'
 import fetchMovieData from '../../utils/fetchMovieData'
+import { useNavigate } from 'react-router-dom'
 
 export default function GamePage() {
 
     const { setRatedFilmsForDS, submitRatings, rateMovie } = useContext(AppContext);
+    const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -66,6 +68,7 @@ export default function GamePage() {
         });
         let objectForDS = ratedFilmsWithoutPictures.reduce((acc, item) => ({...acc, ...item}), {})
         submitRatings(objectForDS);
+        navigate('/mates')
     }
     // useEffect(() => {
     //     console.log('ratedFilms', ratedFilms);
