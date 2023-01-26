@@ -42,7 +42,16 @@ export function AppProvider({ children }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(ratings),
-    }).catch((err) => console.log(err));
+    })
+    .then(res => res.json())
+    .then(res => {
+      const friendsArray = [];
+      for(const [key, value] of Object.entries(res)) {
+        friendsArray.push({ userId: key, matchPercentage: value })
+      }
+      setFriendsList(friendsArray.sort((a,b) =>  b.matchPercentage - a.matchPercentage ));
+    })
+    .catch((err) => console.log(err));
   };
 
   const getWatchList = async (userId) => {
