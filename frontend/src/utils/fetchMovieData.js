@@ -3,6 +3,7 @@ export default async function getMovieFromImdbId(imdbId = "0113497") {
   const url = "https://search.imdbot.workers.dev/?tt=tt";
   const res = await fetch(url + imdbId);
   const data = await res.json();
+  console.log('data', data);
   movieData.imdbId = data.imdbId.split("tt")[1];
   movieData.posterImg = data.short.image;
   movieData.movieTitle = data.main.originalTitleText.text;
@@ -12,6 +13,8 @@ export default async function getMovieFromImdbId(imdbId = "0113497") {
   movieData.movieDuration = data.short.duration.split("PT")[1];
   movieData.movieDescription = data.short.description;
   movieData.movieDirector = data.short.director[0].name;
+  movieData.rating = data.top.ratingsSummary.aggregateRating/2;
+  movieData.ratingCount = data.top.ratingsSummary.voteCount;
   movieData.movieWriters = data.main.writers[0].credits
     .map((credit) => credit.name.nameText.text)
     .join(", ");
