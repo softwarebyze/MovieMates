@@ -69,12 +69,8 @@ export function AppProvider({ children }) {
         ratedFilmsForDS,
         setRatedFilmsForDS,
         submitRatings,
-<<<<<<< HEAD
         isAuth,
         setIsAuth,
-=======
-        getWatchList,
->>>>>>> a241187 (wl)
       }}
     >
       {children}
