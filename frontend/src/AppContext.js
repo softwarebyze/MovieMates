@@ -1,4 +1,4 @@
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { addDoc, doc, setDoc, updateDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
 
 import { auth, db } from "./firebase";
@@ -26,7 +26,8 @@ export function AppProvider({ children }) {
 
     try {
       // update firestore with new rating
-      await updateDoc(doc(db, "movielensFull", userId), ratingObject);
+      await setDoc(doc(db, "movielensFull", userId), ratingObject, { merge: true });
+      // await updateDoc(doc(db, "movielensFull", userId), ratingObject);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -40,6 +41,10 @@ export function AppProvider({ children }) {
       body: JSON.stringify(ratings),
     }).catch((err) => console.log(err));
   };
+
+  const getWatchlist = async (userId) => {
+  }
+
 
   return (
     <AppContext.Provider
