@@ -13,7 +13,7 @@ export default function Grades({handleGrading, ratedFilms}) {
         </div>
         <div className='skip-continue'>
             <button id='skip-film' onClick={(e) => handleGrading(e)}>skip</button>
-            <button id='continue' onClick={(e) => handleGrading(e)} disabled={ratedFilms.length < 0}>continue</button>
+            <button id='continue' onClick={(e) => handleGrading(e)} disabled={ratedFilms.length < 5}>continue</button>
         </div>
     </div>
   )
