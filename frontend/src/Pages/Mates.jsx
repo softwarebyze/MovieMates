@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SmallAvatar from "../Elements/SmallAvatar";
 import Footer from "../Components/Footer";
 import "./Mates.sass";
