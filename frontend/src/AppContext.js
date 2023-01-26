@@ -9,7 +9,8 @@ export function AppProvider({ children }) {
   const [currentUser, setCurrentUser] = useState("false");
   const [friendsList, setFriendsList] = useState([]);
   const [ratedFilmsForDS, setRatedFilmsForDS] = useState([]);
-
+  const [isAuth, setIsAuth] = useState(false);
+  
   const handleLogout = async () => {
     await auth.signOut();
     console.log("user logged out");
@@ -57,6 +58,8 @@ export function AppProvider({ children }) {
         ratedFilmsForDS,
         setRatedFilmsForDS,
         submitRatings,
+        isAuth,
+        setIsAuth,
       }}
     >
       {children}
