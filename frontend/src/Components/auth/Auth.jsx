@@ -60,6 +60,7 @@ const Auth = () => {
         // ...
       }).finally(() => {
         navigate("/game")
+        navigate(0)
         });
   };
 
