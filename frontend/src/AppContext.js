@@ -1,15 +1,14 @@
 import { doc, setDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
 
-import { auth } from "./firebase";
-import { db } from "./firebase";
+import { auth, db } from "./firebase";
 
 const AppContext = createContext();
 
 export function AppProvider({ children }) {
   const [currentUser, setCurrentUser] = useState("false");
   const [friendsList, setFriendsList] = useState([]);
-  const [ratedFilms, setRatedFilms] = useState([]);
+  const [ratedFilmsForDS, setRatedFilmsForDS] = useState([]);
 
   const handleLogout = async () => {
     await auth.signOut();
@@ -23,7 +22,7 @@ export function AppProvider({ children }) {
   const rateMovie = async (userId, movieId, rating) => {
     const ratingObject = {};
     ratingObject[movieId] = rating;
-    // post {movieId: movieId, rating: rating} to data scientists at http://18.159.103.9:8080/mates
+
     try {
       // update firestore with new rating
       await setDoc(doc(db, "users", userId), ratingObject);
@@ -32,8 +31,28 @@ export function AppProvider({ children }) {
     }
   };
 
+  const submitRatings = async (ratings) => {
+    // post {'movieid1': rating1, 'movieid2': rating2, 'movieid3': rating3} to data scientists at http://18.159.103.9:8080/mates
+    fetch("http://18.159.103.9:8080/mates", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(ratings),
+    }).catch((err) => console.log(err));
+  };
+
   return (
-    <AppContext.Provider value={{ currentUser, handleLogout, rateMovie, friendsList, setFriendsList, ratedFilms, setRatedFilms }}>
+    <AppContext.Provider
+      value={{
+        currentUser,
+        handleLogout,
+        rateMovie,
+        friendsList,
+        setFriendsList,
+        ratedFilmsForDS,
+        setRatedFilmsForDS,
+        submitRatings,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
