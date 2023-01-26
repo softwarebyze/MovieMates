@@ -11,7 +11,7 @@ function SmallAvatar({ src, path, text, percent, id }) {
   }
 
   return (
-    <Link to={"/compare/:id"} className="small-avatar-container" >
+    <Link to={`/compare/${id}`} className="small-avatar-container" >
       {src ? (
         <img  src={src} alt="small user avatar"  className="img-small-avatar" />
       ) : (
