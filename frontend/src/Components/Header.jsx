@@ -3,6 +3,7 @@ import AppContext from "../AppContext";
 import Logo from "../Elements/Logo";
 import NavLink from "../Elements/NavLink";
 import "./Header.sass";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   {
@@ -29,7 +30,12 @@ const data = [
 
 function Header({ isAuth }) {
   const { handleLogout } = useContext(AppContext);
-
+  const navigate = useNavigate()
+  const fullLogout = ()=>{
+    handleLogout()
+    navigate('/')
+    navigate(0)
+  }
   return (
     <>
       {isAuth && (
@@ -40,7 +46,7 @@ function Header({ isAuth }) {
               return <NavLink key={obj.id} path={obj.path} text={obj.text} />;
             })}
           </nav>
-          <button className="header-button" onClick={handleLogout}>
+          <button className="header-button" onClick={fullLogout}>
             Logout
           </button>
         </header>
