@@ -6,10 +6,14 @@ import { useContext } from "react";
 
 function UserMatch() {
   const {id} = useParams()
-  console.log(id)
-  const {getWatchList} = useContext(AppContext)
+  console.log("id", id)
+  const {getWatchList, getMovieIdsFromUserId} = useContext(AppContext)
     getWatchList(id)
   const users1 = JSON.parse(localStorage.getItem("userName"));
+  const users1id = JSON.parse(localStorage.getItem("userId"));
+  console.log('object')
+getMovieIdsFromUserId(id)
+getMovieIdsFromUserId(users1id)
   const user1 = {
     name: "User 1",
     movies: [

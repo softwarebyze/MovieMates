@@ -1,7 +1,7 @@
 import { doc, getDocs, getDoc, setDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
 import { auth, db } from "./firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where } from "firebase/firestore";
 
 const AppContext = createContext();
 
@@ -67,6 +67,24 @@ export function AppProvider({ children }) {
     }
   };
 
+  const getMovieIdsFromUserId = async (userId) => {
+    console.log('ru', userId)
+    try {
+      const docRef = collection(db, "movielensFull");
+      const q = query(docRef, where("userId", "==", +userId));
+      const querySnapshot = await getDocs(q);
+      const movieIds = [];
+      querySnapshot.forEach((doc) => {
+        // console.log(`${"doc.id"} => ${doc.data()}`);
+        const {movieId} = doc.data();
+        movieIds.push(movieId);
+      })
+      console.log(movieIds)
+    } catch (e) {
+      console.error("Error gett document: ", e);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -80,7 +98,7 @@ export function AppProvider({ children }) {
         submitRatings,
         isAuth,
         setIsAuth,
-        getWatchList
+        getWatchList,getMovieIdsFromUserId
       }}
     >
       {children}
