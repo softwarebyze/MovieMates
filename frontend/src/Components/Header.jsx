@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import AppContext from "../AppContext";
 import Logo from "../Elements/Logo";
 import NavLink from "../Elements/NavLink";
@@ -30,12 +31,15 @@ const data = [
 
 function Header({ isAuth }) {
   const { handleLogout } = useContext(AppContext);
-  const navigate = useNavigate()
-  const fullLogout = ()=>{
-    handleLogout()
-    navigate('/')
-    navigate(0)
-  }
+  const location = useLocation();
+  
+  const navigate = useNavigate();
+  const fullLogout = () => {
+    handleLogout();
+    navigate("/");
+    navigate(0);
+  };
+
   return (
     <>
       {isAuth && (
@@ -43,7 +47,14 @@ function Header({ isAuth }) {
           <Logo type="horisontal" />{" "}
           <nav className="header-nav">
             {data.map((obj) => {
-              return <NavLink key={obj.id} path={obj.path} text={obj.text} />;
+              return (
+                <NavLink
+                  key={obj.id}
+                  path={obj.path}
+                  text={obj.text}
+                  active={location.pathname === obj.path}
+                />
+              );
             })}
           </nav>
           <button className="header-button" onClick={fullLogout}>
