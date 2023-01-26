@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import Header from "../Components/Header";
+import '../App.css'
 
 function Profile() {
-    const [userName, setUserName] = useState('UserName')
+  const myUser = JSON.parse(localStorage.getItem("userName"))
+    const [userName, setUserName] = useState(myUser)
     const handleSubmit = (e)=>{
         e.preventDefault();
         setUserName(userName)
@@ -14,13 +16,13 @@ function Profile() {
   return (
     <>
       <Header/>
-      <div><form onSubmit={handleSubmit}>
+      <div className='d-flex justify-content-center'><form onSubmit={handleSubmit}>
       <textarea
-            className="enterText form-control"
+            className="changeName form-control"
             value={userName}
             onChange={handleUserName}
             placeholder={"write UserName"}
-          /><button className="myBtn btn btn-primary">save</button></form></div>
+          /><button className="btn btn-warning">save</button></form></div>
     </>
   )
 }
