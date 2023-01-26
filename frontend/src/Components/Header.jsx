@@ -15,7 +15,7 @@ const data = [
   {
     id: 2,
     path: "/movieRec",
-    text: "Recommendations",
+    text: "Watchlist",
   },
   {
     id: 3,
