@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./App.sass";
-import AppContext from "./AppContext";
 import Home from "./Components/Home";
 import MovieRec from "./Components/MovieRec";
 import Header from "./Components/Header";
@@ -11,10 +10,11 @@ import Profile from "./Components/Profile";
 import FilmDetailPage from "./Pages/FilmDetailPage";
 import GamePage from "./Pages/Game/GamePage"
 import UserMatch from "./Components/UserMatch/UserMatch"
+import Mates from "./Pages/Mates";
+import GamePage from "./Pages/Game/GamePage";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const { handleLogout } = useContext(AppContext);
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -64,6 +64,14 @@ function App() {
               <Route path="/game" element={<GamePage />} />
               <Route path="/movieRec" element={<MovieRec />} />
               <Route path="/film/:id" element={<FilmDetailPage />} />
+              <Route
+                path="/mates"
+                element={
+                  <PrivateRoute>
+                    <Mates />
+                  </PrivateRoute>
+                }
+              />
             </>
           ) : (
             <Route path="/" element={<Home />} />

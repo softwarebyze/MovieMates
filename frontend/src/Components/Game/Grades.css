@@ -16,14 +16,35 @@
   border: 2px solid yellow;
 }
 
+#continue {
+  font-size: 2.8vmin;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#continue:disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
 .game-grades button:hover {
   background-color: yellow;
 }
 
-#skip-film {
-  border: none;
+.skip-continue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 }
-#skip-film:hover {
+
+#skip-film, #continue {
+  border: none;
+  width: 8rem;
+}
+#skip-film:hover, #continue:hover {
   background-color: transparent;
   text-decoration: underline;
 }
