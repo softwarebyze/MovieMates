@@ -32,15 +32,13 @@ const Home = () => {
               <h1 className="home-title">Welcome back {userName}</h1>
               <p className="home-text">
                 Don't you hate it when you waste hours looking for the perfect
-                movie? <br/>
+                movie? <br />
                 Well worry not, with a few simple clicks MovieMates will figure
-                out the movies that best suit you. 
+                out the movies that best suit you.
               </p>
+              <p className="home-text"></p>
               <p className="home-text">
-                
-              </p>
-              <p className="home-text">
-                So what are you waiting for? <br/>
+                So what are you waiting for? <br />
                 Sit back, relax, grab your mate and let's watch a movie!
               </p>
             </div>
