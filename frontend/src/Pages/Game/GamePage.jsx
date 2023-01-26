@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useContext } from 'react'
 import { useEffect } from 'react'
+import AppContext from '../../AppContext'
 import Carousel from '../../Components/Game/Carousel'
 import Grades from '../../Components/Game/Grades'
 import ProgressBar from '../../Components/Game/ProgressBar'
@@ -7,6 +9,7 @@ import fetchMovieData from '../../utils/fetchMovieData'
 
 export default function GamePage() {
 
+    const { setRatedFilmsForDS, submitRatings } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -33,6 +36,8 @@ export default function GamePage() {
         async function setInitialFilms() {
             const filmOne = await fetchMovieData(mostPopularFilms[0]?.imdbId);
             const filmTwo = await fetchMovieData(mostPopularFilms[1]?.imdbId);
+            filmOne['movieId'] = mostPopularFilms[0]?.movieId;
+            filmTwo['movieId'] = mostPopularFilms[1]?.movieId;
             setCurrentFilm(filmOne);
             setNextFilm(filmTwo);
             setIsLoading(false);
@@ -48,11 +53,19 @@ export default function GamePage() {
     }
 
     function handleGrading(e) {
-        if (e.target.id !== 'skip-film') setRatedFilms([...ratedFilms, { filmId: currentFilm.movieId, grade: e.target.id.split('-')[1], picture: currentFilm.posterImg } ]);
+        if (e.target.id === 'continue') return handleContinue();
+        if (e.target.id !== 'skip-film') setRatedFilms([...ratedFilms, { movieId: currentFilm.movieId, grade: (+e.target.id.split('-')[1])*2, picture: currentFilm.posterImg } ]);
         setCurrentFilm(nextFilm);
         getNextFilm();
     }
 
+    function handleContinue() {
+        const ratedFilmsWithoutPictures = ratedFilms.map(item => {
+            return {[item.movieId]: item.grade}
+        });
+        // setRatedFilmsForDS(ratedFilmsWithoutPictures);
+        submitRatings(ratedFilmsWithoutPictures);
+    }
     // useEffect(() => {
     //     console.log('ratedFilms', ratedFilms);
     //     console.log('currentFilm', currentFilm);
@@ -73,6 +86,7 @@ export default function GamePage() {
 
     const propsForGrades = {
         handleGrading,
+        ratedFilms,
     }
 
   return (
