@@ -3,6 +3,7 @@ import "./Auth.sass";
 // import { useNavigate } from "react-router-dom";
 import Email from "./Email";
 import YellowButton from "../../Elements/YellowButton";
+import Logo from "../../Elements/Logo";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
@@ -64,6 +65,9 @@ const Auth = () => {
 
   return (
     <main className="main-auth">
+      <div className="auth-logo-container">
+        <Logo type="vertical"/>
+      </div>
       <div className="auth-container">
         <h1 className="title-auth">Sign Up Now</h1>
         <div className="button-container">
