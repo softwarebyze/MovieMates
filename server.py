@@ -38,6 +38,7 @@ def make_good(numbers, threshold):
 @app.route('/mates', methods=['POST'])
 def find_movie_mates():
     json_data = request.get_json()
+    print(json_data)
 
     # movie_ratings = json_data['movie_ratings']  # the key in the json data is 'movie_ratings'
     new_user_ratings = dict(json_data)
