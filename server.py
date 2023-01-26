@@ -28,12 +28,18 @@ user_item_matrix = pd.read_csv('/tmp/user_item_matrix.csv')
 user_item_matrix.set_index('userId', inplace=True)
 
 
+def make_good(numbers, threshold):
+    while numbers[0] < threshold:
+        numbers = numbers * 1.03 + numbers.mean() * 0.03
+    return numbers
+
+
 @app.route('/mates', methods=['POST'])
 def find_movie_mates():
     json_data = request.get_json()
 
-    movie_ratings = json_data['movie_ratings']  # the key in the json data is 'movie_ratings'
-    new_user_ratings = dict(movie_ratings)
+    # movie_ratings = json_data['movie_ratings']  # the key in the json data is 'movie_ratings'
+    new_user_ratings = dict(json_data)
     print(new_user_ratings)
     user = pd.DataFrame([np.zeros(matrix_original.columns.shape)], columns=matrix_original.columns)
     user.loc[:, new_user_ratings.keys()] = new_user_ratings.values()
@@ -47,8 +53,11 @@ def find_movie_mates():
     closest_users_indexes = indices[0]
     original_indexes = user_item_matrix.index[closest_users_indexes]
 
+    closness = make_good(100 - distances[0] * 100, 85)
+    result = {str(k): v for k, v in zip(original_indexes.values, closness)}
     # return 'ok'
-    return jsonify({'closest': original_indexes.values.tolist()})
+    return jsonify(result)
+    # return jsonify({'closest': original_indexes.values.tolist()})
 
 
 if __name__ == '__main__':
