@@ -45,9 +45,9 @@ const data = [
 const Mates = () => {
   return (
     <>
-      <main className="main-mates-container">
+      <main className="main-mates-container" >
         <h1 className="mates-title">My mates</h1>
-        <ul className="mates-list">
+        <ul className="mates-list" >
           {data.map((obj) => {
             return <li key={obj.id}>
               <SmallAvatar text={obj.percent}/>

@@ -11,7 +11,6 @@ import FilmDetailPage from "./Pages/FilmDetailPage";
 import GamePage from "./Pages/Game/GamePage"
 import UserMatch from "./Components/UserMatch/UserMatch"
 import Mates from "./Pages/Mates";
-import GamePage from "./Pages/Game/GamePage";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
