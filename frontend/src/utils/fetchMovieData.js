@@ -3,7 +3,6 @@ export default async function getMovieFromImdbId(imdbId = "0113497") {
   const url = "https://search.imdbot.workers.dev/?tt=tt";
   const res = await fetch(url + imdbId);
   const data = await res.json();
-  console.log('data', data);
   movieData.imdbId = data.imdbId.split("tt")[1];
   movieData.posterImg = data.short.image;
   movieData.movieTitle = data.main.originalTitleText.text;
