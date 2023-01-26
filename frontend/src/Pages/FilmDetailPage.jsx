@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../Components/Footer";
 import GenreTag from "../Elements/GenreTag";
@@ -6,18 +6,41 @@ import SmallAvatar from "../Elements/SmallAvatar";
 import Star from "../Elements/Star";
 import getMovieFromImdbId from "../utils/fetchMovieData";
 import "./FilmDetailPage.sass";
+import AppContext from '../AppContext'
+import { db } from "../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 export default function FilmDetailPage() {
   const [data, setData] = useState({});
+  const {friendsList} = useContext(AppContext);
   const { id } = useParams();
+
+  const [friendsRating, setFriendsRating] = useState(0);
   useEffect(() => {
     getMovieFromImdbId(id)
       .then((movieData) => {
+        console.log('data', movieData);
         setData(movieData);
       })
       .catch((e) => console.log("problem with fetchMovieData", e));
   }, [id]);
-  
+
+  async function getRatingsFromFriends() {
+    console.log('i am clg')
+    const q = query(collection(db, "movielensFull"), where("imdbId", "==", id.toString()));
+    const querySnapshot = await getDocs(q);
+    const usersWhoRated = [];
+    let ratingSum = 0;
+    let usersAmount = 0;
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      usersWhoRated.push(doc.data().userId)
+      ratingSum += +doc.data().rating;
+      usersAmount++;
+    })
+    setFriendsRating(ratingSum/usersAmount);
+  }
+  useEffect(() => {getRatingsFromFriends()}, []);
   return (
     <>
       <main className="main-film-detail">
@@ -45,7 +68,8 @@ export default function FilmDetailPage() {
                   <Star />
                   <Star />
                 </div>
-                <span className="rating-text">Rating 4.7 / 5</span>
+                <span className="rating-text">Rating {data.rating} / 5</span>
+                {friendsRating && <span className="rating-text">Friends {friendsRating.toFixed(1)} / 5</span>}
               </div>
             </div>
             <div className="info-row2">
