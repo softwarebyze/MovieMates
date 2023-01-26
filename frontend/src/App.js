@@ -9,7 +9,7 @@ import NavBar from "./Components/NavBar";
 import PrivateRoute from "./Components/PrivateRoute.js";
 import Profile from "./Components/Profile";
 import FilmDetailPage from "./Pages/FilmDetailPage";
-import GamePage from "./Pages/Game/GamePage";
+import GamePage from "./Pages/Game/GamePage"
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
