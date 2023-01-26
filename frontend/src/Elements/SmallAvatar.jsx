@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./SmallAvatar.sass";
 import {useNavigate} from "react-router-dom";
 
-function SmallAvatar({ src, path, text, percent }) {
+function SmallAvatar({ src, path, text, percent, id }) {
   const navigate = useNavigate();
   const handleClick = () => {
     console.log("click");
@@ -31,6 +31,7 @@ function SmallAvatar({ src, path, text, percent }) {
       )}
 
       {text ? <span className="small-avatar-text">{text}</span> : <span className="small-avatar-percent">{percent}</span>}
+      {id && <span className="small-avatar-text">ID: {id}</span>}
     </Link>
   );
 }
