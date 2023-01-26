@@ -25,7 +25,7 @@ export default function GamePage() {
     useEffect(() => {
         function getMostPopularFilms() {
             // get 100 most rated films from DB
-            const data = [{movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}, {movieId: 2, imdbId: '0113497', tmdbId: '8844'}, {movieId: 3, imdbId: '0113228', tmdbId: '15602'}, {movieId: 4, imdbId: '0114885', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}]
+            const data = [{movieId: 2959, imdbId: '0137523', tmdbId: '8844'}, {movieId: 2953, imdbId: '0104431', tmdbId: '15602'}, {movieId: 1721, imdbId: '0120338', tmdbId: '31357'}, {movieId: 1699, imdbId: '0118804', tmdbId: '11862'}, {movieId: 1729, imdbId: '0119396', tmdbId: '8844'}, {movieId: 1707, imdbId: '0119303', tmdbId: '15602'}, {movieId: 81591, imdbId: '0947798', tmdbId: '31357'}, {movieId: 2542, imdbId: '0120735', tmdbId: '11862'}, {movieId: 2706, imdbId: '0163651', tmdbId: '8844'}, {movieId: 4369, imdbId: '0232500', tmdbId: '15602'}, {movieId: 1732, imdbId: '0118715', tmdbId: '31357'}, {movieId: 5, imdbId: '0113041', tmdbId: '11862'}]
             setMostPopularFilms(data)
         }
         getMostPopularFilms();
