@@ -55,7 +55,7 @@ export default function GamePage() {
     function handleGrading(e) {
         if (e.target.id === 'continue') return handleContinue();
         if (e.target.id !== 'skip-film') setRatedFilms([...ratedFilms, { movieId: currentFilm.movieId, grade: (+e.target.id.split('-')[1])*2, picture: currentFilm.posterImg } ]);
-        rateMovie(1, currentFilm.movieId, (+e.target.id.split('-')[1])*2);
+        rateMovie(JSON.parse(localStorage.getItem("userId")), currentFilm.movieId, (+e.target.id.split('-')[1])*2);
         setCurrentFilm(nextFilm);
         getNextFilm();
     }

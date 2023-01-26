@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
 
 import { auth, db } from "./firebase";
@@ -21,11 +21,12 @@ export function AppProvider({ children }) {
 
   const rateMovie = async (userId, movieId, rating) => {
     const ratingObject = {};
-    ratingObject[movieId] = rating;
+    ratingObject[movieId] = (rating);
+    console.log(userId, ratingObject)
 
     try {
       // update firestore with new rating
-      await setDoc(doc(db, "users", userId), ratingObject);
+      await updateDoc(doc(db, "movielensFull", userId), ratingObject);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
