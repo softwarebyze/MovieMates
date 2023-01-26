@@ -38,8 +38,6 @@ def make_good(numbers, threshold):
 @app.route('/mates', methods=['POST'])
 def find_movie_mates():
     json_data = request.get_json()
-    print(json_data)
-
     # movie_ratings = json_data['movie_ratings']  # the key in the json data is 'movie_ratings'
     new_user_ratings = dict(json_data)
     print(new_user_ratings)
@@ -60,6 +58,12 @@ def find_movie_mates():
     # return 'ok'
     return jsonify(result)
     # return jsonify({'closest': original_indexes.values.tolist()})
+
+
+@app.route('/', methods=['GET'])
+def answer():
+    return 'ok'
+
 
 
 if __name__ == '__main__':
