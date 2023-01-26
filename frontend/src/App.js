@@ -5,7 +5,7 @@ import "./App.sass";
 import AppContext from "./AppContext";
 import Home from "./Components/Home";
 import MovieRec from "./Components/MovieRec";
-import NavBar from "./Components/NavBar";
+import Header from "./Components/Header";
 import PrivateRoute from "./Components/PrivateRoute.js";
 import Profile from "./Components/Profile";
 import FilmDetailPage from "./Pages/FilmDetailPage";
@@ -28,7 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar isAuth={isAuth} />
+        <Header isAuth={isAuth} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

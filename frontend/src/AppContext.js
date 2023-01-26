@@ -6,20 +6,24 @@ import { db } from "./firebase";
 
 const AppContext = createContext();
 
+export function AppProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState("false");
+  const [friendsList, setFriendsList] = useState([]);
+  const [ratedFilms, setRatedFilms] = useState([]);
 
-export function AppProvider({children}){
-    const [currentUser, setCurrentUser] = useState('false')
-    const handleLogout = async () => {
-        await auth.signOut();
-        console.log('user logged out');
-        localStorage.removeItem('userId')
-        localStorage.removeItem('userPhoto')
-        localStorage.removeItem('userName')
-        setCurrentUser(false)}
+  const handleLogout = async () => {
+    await auth.signOut();
+    console.log("user logged out");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userPhoto");
+    localStorage.removeItem("userName");
+    setCurrentUser(false);
+  };
+
   const rateMovie = async (userId, movieId, rating) => {
     const ratingObject = {};
     ratingObject[movieId] = rating;
-    // send {movieId: movieId, rating: rating} to data scientists
+    // post {movieId: movieId, rating: rating} to data scientists at http://18.159.103.9:8080/mates
     try {
       // update firestore with new rating
       await setDoc(doc(db, "users", userId), ratingObject);
@@ -27,10 +31,9 @@ export function AppProvider({children}){
       console.error("Error adding document: ", e);
     }
   };
-  
 
   return (
-    <AppContext.Provider value={{currentUser, handleLogout, rateMovie }}>
+    <AppContext.Provider value={{ currentUser, handleLogout, rateMovie, friendsList, setFriendsList, ratedFilms, setRatedFilms }}>
       {children}
     </AppContext.Provider>
   );

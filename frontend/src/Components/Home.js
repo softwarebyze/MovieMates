@@ -9,7 +9,7 @@ const Home = () => {
   const userName = JSON.parse(localStorage.getItem("userName"));
   const userPhoto = JSON.parse(localStorage.getItem("userPhoto"));
   useEffect(() => {
-    const userId = localStorage.getItem("userId");6
+    const userId = localStorage.getItem("userId");
 
     if (userId) {
       setIsAuth(true);
