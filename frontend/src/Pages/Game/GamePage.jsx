@@ -9,7 +9,7 @@ import fetchMovieData from '../../utils/fetchMovieData'
 
 export default function GamePage() {
 
-    const { setRatedFilmsForDS, submitRatings } = useContext(AppContext);
+    const { setRatedFilmsForDS, submitRatings, rateMovie } = useContext(AppContext);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -55,14 +55,18 @@ export default function GamePage() {
     function handleGrading(e) {
         if (e.target.id === 'continue') return handleContinue();
         if (e.target.id !== 'skip-film') setRatedFilms([...ratedFilms, { movieId: currentFilm.movieId, grade: (+e.target.id.split('-')[1])*2, picture: currentFilm.posterImg } ]);
+        rateMovie(1, currentFilm.movieId, (+e.target.id.split('-')[1])*2);
         setCurrentFilm(nextFilm);
         getNextFilm();
     }
 
     function handleContinue() {
         const ratedFilmsWithoutPictures = ratedFilms.map(item => {
-            return {[item.movieId]: item.grade}
+            return {[item.movieId.toString()]: item.grade}
         });
+        console.log('ratedFilmsWithoutPictures', ratedFilmsWithoutPictures);
+        console.log(JSON.stringify(ratedFilmsWithoutPictures));
+        console.log(JSON.stringify(ratedFilmsWithoutPictures[0]));
         // setRatedFilmsForDS(ratedFilmsWithoutPictures);
         submitRatings(ratedFilmsWithoutPictures);
     }
