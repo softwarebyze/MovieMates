@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../Components/Footer";
-import Header from "../Components/Header";
 import GenreTag from "../Elements/GenreTag";
 import SmallAvatar from "../Elements/SmallAvatar";
 import Star from "../Elements/Star";
@@ -21,7 +20,6 @@ export default function FilmDetailPage() {
   
   return (
     <>
-      <Header />
       <main className="main-film-detail">
         <section className="section-film-detail section-film-detail-h">
           <div className="poster-container">

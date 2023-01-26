@@ -27,21 +27,25 @@ const data = [
   },
 ];
 
-function Header() {
+function Header({ isAuth }) {
   const { handleLogout } = useContext(AppContext);
 
   return (
-    <header className="header">
-      <Logo type="horisontal" />{" "}
-      <nav className="header-nav">
-        {data.map((obj) => {
-          return <NavLink key={obj.id} path={obj.path} text={obj.text} />;
-        })}
-      </nav>
-      <button className="header-button" onClick={handleLogout}>
-        Logout
-      </button>
-    </header>
+    <>
+      {isAuth && (
+        <header className="header">
+          <Logo type="horisontal" />{" "}
+          <nav className="header-nav">
+            {data.map((obj) => {
+              return <NavLink key={obj.id} path={obj.path} text={obj.text} />;
+            })}
+          </nav>
+          <button className="header-button" onClick={handleLogout}>
+            Logout
+          </button>
+        </header>
+      )}
+    </>
   );
 }
 
