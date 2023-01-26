@@ -1,4 +1,4 @@
-import { addDoc, doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDocs, setDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
 
 import { auth, db } from "./firebase";
@@ -22,12 +22,14 @@ export function AppProvider({ children }) {
 
   const rateMovie = async (userId, movieId, rating) => {
     const ratingObject = {};
-    ratingObject[movieId] = (rating);
-    console.log(userId, ratingObject)
+    ratingObject[movieId] = rating;
+    console.log(userId, ratingObject);
 
     try {
       // update firestore with new rating
-      await setDoc(doc(db, "movielensFull", userId), ratingObject, { merge: true });
+      await setDoc(doc(db, "movielensFull", userId), ratingObject, {
+        merge: true,
+      });
       // await updateDoc(doc(db, "movielensFull", userId), ratingObject);
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -43,9 +45,18 @@ export function AppProvider({ children }) {
     }).catch((err) => console.log(err));
   };
 
-  const getWatchlist = async (userId) => {
-  }
-
+  const getWatchList = async (userId) => {
+    try {
+      console.log('userif in watchgetwatclst', userId)
+      const wl = await getDocs(doc(db, "movielensFull", userId));
+      const wlIds = wl.map(o=>o.id)
+      console.log(wl);
+      console.log('wlIds', wlIds);
+      return wlIds;
+    } catch (e) {
+      console.error("Error gett document: ", e);
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -58,8 +69,12 @@ export function AppProvider({ children }) {
         ratedFilmsForDS,
         setRatedFilmsForDS,
         submitRatings,
+<<<<<<< HEAD
         isAuth,
         setIsAuth,
+=======
+        getWatchList,
+>>>>>>> a241187 (wl)
       }}
     >
       {children}

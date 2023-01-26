@@ -1,32 +1,50 @@
-import React from "react";
-
+import React, { useContext, useEffect, useState } from "react";
+import AppContext from "../../AppContext";
+import getMovieFromImdbId from "../../utils/fetchMovieData";
 import { MovieCard } from "./MovieCard";
 
 export const Watched = () => {
-  const  watched  = [
-    {
-        "id": "0110912",
-        "resultType": "Movie",
-        "image": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_Ratio0.7027_AL_.jpg",
-        "title": "Pulp Fiction",
-        "description": "1994 John Travolta, Uma Thurman"
-    },
-    {
-        "id": "3915174",
-        "resultType": "Movie",
-        "image": "https://m.media-amazon.com/images/M/MV5BNjMyMDBjMGUtNDUzZi00N2MwLTg1MjItZTk2MDE1OTZmNTYxXkEyXkFqcGdeQXVyMTQ5NjA0NDM0._V1_Ratio0.6757_AL_.jpg",
-        "title": "Puss in Boots: The Last Wish",
-        "description": "2022 Antonio Banderas, Salma Hayek"
-    },
-    {
-        "id": "0241527",
-        "resultType": "Movie",
-        "image": "https://m.media-amazon.com/images/M/MV5BNmQ0ODBhMjUtNDRhOC00MGQzLTk5MTAtZDliODg5NmU5MjZhXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_Ratio0.6757_AL_.jpg",
-        "title": "Harry Potter and the Sorcerer's Stone",
-        "description": "2001 Daniel Radcliffe, Rupert Grint"
+  const { getWatchList } = useContext(AppContext);
+  const userId = JSON.parse(localStorage.getItem("userId"));
+  const [watched, setWatched] = useState([])
+
+  useEffect(() => {
+    async function getWl() {
+      const wlIds = await getWatchList(userId);
+      console.log(wlIds);
+      const watche = wlIds.map(id => getMovieFromImdbId(id))
+      setWatched(watche)
     }
-]
-  console.log(watched)
+    // getWatchList(userId);
+  }, []);
+  
+  // const watched = [
+  //   {
+  //     id: "0110912",
+  //     resultType: "Movie",
+  //     image:
+  //       "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_Ratio0.7027_AL_.jpg",
+  //     title: "Pulp Fiction",
+  //     description: "1994 John Travolta, Uma Thurman",
+  //   },
+  //   {
+  //     id: "3915174",
+  //     resultType: "Movie",
+  //     image:
+  //       "https://m.media-amazon.com/images/M/MV5BNjMyMDBjMGUtNDUzZi00N2MwLTg1MjItZTk2MDE1OTZmNTYxXkEyXkFqcGdeQXVyMTQ5NjA0NDM0._V1_Ratio0.6757_AL_.jpg",
+  //     title: "Puss in Boots: The Last Wish",
+  //     description: "2022 Antonio Banderas, Salma Hayek",
+  //   },
+  //   {
+  //     id: "0241527",
+  //     resultType: "Movie",
+  //     image:
+  //       "https://m.media-amazon.com/images/M/MV5BNmQ0ODBhMjUtNDRhOC00MGQzLTk5MTAtZDliODg5NmU5MjZhXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_Ratio0.6757_AL_.jpg",
+  //     title: "Harry Potter and the Sorcerer's Stone",
+  //     description: "2001 Daniel Radcliffe, Rupert Grint",
+  //   },
+  // ];
+  console.log(watched);
   return (
     <div className="movie-page">
       <div className="container">
