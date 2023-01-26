@@ -1,6 +1,5 @@
-import { doc, getDocs, setDoc } from "firebase/firestore";
+import { doc, getDocs, getDoc, setDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
-
 import { auth, db } from "./firebase";
 import { collection, addDoc } from "firebase/firestore";
 
@@ -58,7 +57,7 @@ export function AppProvider({ children }) {
   const getWatchList = async (userId) => {
     try {
       console.log('userif in watchgetwatclst', userId)
-      const wl = await getDocs(doc(db, "movielensFull", userId));
+      const wl = await getDoc(doc(db, "movielensFull", userId));
       const wlIds = wl.map(o=>o.id)
       console.log(wl);
       console.log('wlIds', wlIds);
@@ -81,6 +80,7 @@ export function AppProvider({ children }) {
         submitRatings,
         isAuth,
         setIsAuth,
+        getWatchList
       }}
     >
       {children}

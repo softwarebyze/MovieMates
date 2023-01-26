@@ -1,7 +1,14 @@
 import "./UserMatch.sass";
 import Footer from "../Footer";
+import {useParams} from "react-router-dom";
+import AppContext from "../../AppContext"
+import { useContext } from "react";
 
 function UserMatch() {
+  const {id} = useParams()
+  console.log(id)
+  const {getWatchList} = useContext(AppContext)
+    getWatchList(id)
   const users1 = JSON.parse(localStorage.getItem("userName"));
   const user1 = {
     name: "User 1",
